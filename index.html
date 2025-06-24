@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Auto-Submit Jotform</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Embedded Jotform with Prefill URL -->
+<iframe
+  id="jotformFrame"
+  title="Jotform"
+  src="https://form.jotform.com/251737975960068/prefill/6859f87931656364f89f9f062387">
+</iframe>
+
+<script>
+  window.onload = function () {
+    const iframe = document.getElementById('jotformFrame');
+    iframe.onload = function () {
+      try {
+        const form = iframe.contentWindow.document.querySelector('form');
+        if (form) {
+          form.submit();
+        }
+      } catch (e) {
+        console.warn("Auto-submit is blocked due to cross-origin protection. You must host the form code on your own domain for full control.");
+      }
+    };
+  };
+</script>
+
+</body>
+</html>
